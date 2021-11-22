@@ -1,0 +1,7 @@
+﻿5,4
+0,1,N
+M,R,M,M,M,M,R,M,M
+3,3,E
+M,M,R,M,M,R,M,R,R,M
+2,2,S
+M,M,R,M,M,R,M,R,R,M
