@@ -15,8 +15,9 @@ namespace DiscoverMars.Models
 
         public string[] Moves { get; set; }
 
-        public Rover(Point startPoint, string roverDirection, string[] moves)
+        public Rover(int roverId,Point startPoint, string roverDirection, string[] moves)
         {
+            Id = roverId;
             Location = startPoint;
             Moves = moves;
 
@@ -44,10 +45,10 @@ namespace DiscoverMars.Models
             switch (Direction)
             {
                 case Direction.North:
-                    Location = new Point(Location.X, Location.Y - 1);
+                    Location = new Point(Location.X, Location.Y + 1);
                     break;
                 case Direction.South:
-                    Location = new Point(Location.X, Location.Y + 1);
+                    Location = new Point(Location.X, Location.Y - 1);
                     break;
                 case Direction.East:
                     Location = new Point(Location.X + 1, Location.Y);

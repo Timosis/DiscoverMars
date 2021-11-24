@@ -10,7 +10,7 @@ namespace DiscoverMars
 {
     public class FileReader
     {
-        string filePath = Path.Combine(Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory), @"..\..\..\Commands\RoverCommands.txt");
+        string filePath = Path.Combine(Path.GetDirectoryName(System.AppDomain.CurrentDomain.BaseDirectory), @"Commands\RoverCommands.txt");
 
         public string[] SettingsFromFile { get; set; }
 
@@ -31,11 +31,12 @@ namespace DiscoverMars
         public List<Rover> GetRovers()
         {
             var rovers = new List<Rover>();
-
+            int idCounter = 1;
             for (int i = 1; i < SettingsFromFile.Length - 1; i += 2)
             {
+                
                 var roverLocation = SettingsFromFile[i].Split(' ', ',');
-                rovers.Add(new Rover(new Point(int.Parse(roverLocation[0]), int.Parse(roverLocation[1])), roverLocation[2], new string[] { SettingsFromFile[i + 1] }));            
+                rovers.Add(new Rover(idCounter++, new Point(int.Parse(roverLocation[0]), int.Parse(roverLocation[1])), roverLocation[2], new string[] { SettingsFromFile[i + 1] }));            
             }
              
             return rovers;

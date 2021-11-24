@@ -79,16 +79,35 @@ namespace DiscoverMars
                         Point oldLocation = currentRover.Location;
                         currentRover.Move();
 
+                        if (isRoverOnBorder(currentRover.Location))
+                        {
+                            Console.WriteLine("{0}.Rover Can Not Move Out Of Plateau's Border ({1},{2}) to ({3},{4}). Direction :{5}", currentRover.Id ,oldLocation.X, oldLocation.Y, currentRover.Location.X, currentRover.Location.Y,currentRover.Direction);
+                            Console.WriteLine("{0}.Rover Is Stopped. ", currentRover.Id);
+                            break;
+                        }
+
                         plateau.objectsOfPlateau[currentRover.Location.X, currentRover.Location.Y] = currentRover;
 
-                        Console.WriteLine("Rover Moved from ({0},{1}) to ({2},{3})", oldLocation.X, oldLocation.Y, currentRover.Location.X, currentRover.Location.Y);
+                        Console.WriteLine("{0}.Rover Moved from ({1},{2}) to ({3},{4}). Direction :{5}", currentRover.Id ,oldLocation.X, oldLocation.Y, currentRover.Location.X, currentRover.Location.Y, currentRover.Direction);
                         plateau.objectsOfPlateau[oldLocation.X, oldLocation.Y] = null;
 
                     }
                 }
+
+                Console.WriteLine("---------------------------------------");
             }
 
+        }
 
+        private bool isRoverOnBorder(Point location)
+        {
+
+            if (location.X > taskSettings.PlateauSize.X - 1 || location.Y > taskSettings.PlateauSize.Y - 1 || location.X < 0 || location.Y < 0)
+            {
+                return true;
+            }
+
+            return false;
         }
 
     }
